@@ -7,7 +7,7 @@
   src: url('assets/fonts/WorkSans-Bold.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'WorkSans-Regular';
+  font-family: 'WorkSans-Semibold';
   src: url('assets/fonts/WorkSans-SemiBold.ttf') format('truetype');
 }
 :root {
@@ -69,6 +69,7 @@ body {
 .title h1 {
   margin: 0;
   font-size: 2rem;
+  margin-bottom: 1.5rem;
 }
 .question-label {
   display: flex;
@@ -81,9 +82,17 @@ body {
 .answer {
   max-height: 0; 
   overflow: hidden;
+  transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out; 
   font-family: 'WorkSans-Regular', sans-serif;
   color: var(--purple-600);
   line-height: 1.5rem;
+}
+.answer p {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease-in 0.15s, transform 0.3s ease-in 0.15s; 
+  margin: 0;
+  margin-bottom: 1rem;
 }
 .question-label span {
   margin-left: auto;
@@ -103,8 +112,14 @@ body {
   height: 2rem;
 }
 .accordion-toggle:checked ~ .answer {
-  max-height: 100%; 
+  max-height: 16rem;
 }
+.accordion-toggle:checked ~ .answer p {
+  opacity: 1;
+  transform: translateY(0);
+  margin-bottom: 1rem;
+}
+
 .accordion-toggle:checked ~ .question-label .icon-plus {
   display: none;
 }
@@ -125,9 +140,6 @@ body {
   }
   .background-pattern-desktop {
     display: block;
-  }
-  .background-image {
-    height: 20%;
   }
   .card {
     width: 50%;
